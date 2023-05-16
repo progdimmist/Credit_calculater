@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кредитный калькулятор</title>
+    <meta charset="utf-8">
+    <style>
+  body {
+   background-color: #f2f2f2;
+   background-image: url('/static/photo.jpeg');
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-attachment: fixed;
+   background-size: cover;
+   font-family: Arial, sans-serif;
+   color: #333;
+   margin: 0;
+   padding: 0;
+  }
+
+  h1 {
+   font-size: 42px;
+   text-align: center;
+   margin: 40px 0;
+  }
+
+  form {
+   background-color: #fff;
+   width: 600px;
+   margin: 0 auto;
+   padding: 20px;
+   padding-left: 30px;
+   padding-right: 30px;
+   border-radius: 20px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  label {
+   display: block;
+   margin-bottom: 10px;
+   font-size: 18px;
+  }
+
+  input[type="number"] {
+   width: 95%;
+   padding: 10px;
+   font-size: 18px;
+   border-radius: 5px;
+   margin-bottom: 20px;
+  }
+
+  button[type="submit"] {
+   background-color: #4CAF50;
+   color: #fff;
+   padding: 10px 20px;
+   font-size: 18px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: all 0.3s ease-in-out;
+  }
+
+  button[type="submit"]:hover {
+   background-color: #3e8e41;
+  }
+
+
+
+
+
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="color: #fff;">Кредитный калькулятор</h1>
+</header>
+
+<main>
+    <form action="/" method="POST">
+        {% if error %}
+        <p style="color:red;">{{ error }}</p>
+        {% endif %}
+        <label for="amount">Сумма кредита:</label>
+        <input type="number" id="amount" name="amount" required min="0" >
+
+        <label for="duration">Срок кредита (месяцы):</label>
+        <input type="number" id="duration" name="duration" required min="0">
+
+        <label for="rate">Процентная ставка (%):</label>
+        <input type="number" id="rate" name="rate" required step="0.1" min="0">
+
+        <button type="submit">Рассчитать</button>
+    </form>
+</main>
+</body>
+</html>

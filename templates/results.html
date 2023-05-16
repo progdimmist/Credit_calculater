@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Результаты расчета кредита</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+           background-image: url('/static/credit1.jpg');
+           background-repeat: no-repeat;
+           background-position: center center;
+           background-attachment: fixed;
+           background-size: cover;
+           font-family: Arial, sans-serif;
+           color: #333;
+           margin: 0;
+           padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 50px;
+            background-color: #fff;
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin-bottom: 50px;
+        }
+
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #666;
+            padding: 5px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fff;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        thead th {
+            background-color: #c8effe;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <a href="{{url_for('home')}}" class="button">Назад</a>
+        <h1>Результаты расчета кредита</h1>
+        <p>Сумма кредита: {{amount}} руб.</p>
+        <p>Срок кредита (месяцы): {{duration}} мес.</p>
+        <p>Процентная ставка: {{rate}}%</p>
+        <p>Ежемесячный платеж: {{monthly_payment}} руб.</p>
+        <p>Всего выплат: {{total_payment}} руб.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Месяц</th>
+                    <th>Платеж</th>
+                    <th>Проценты</th>
+                    <th>Основной долг</th>
+                    <th>Остаток долга</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment['month'] }}</td>
+                    <td>{{ payment['payment'] }}</td>
+                    <td>{{ payment['interest'] }}</td>
+                    <td>{{ payment['principle'] }}</td>
+                    <td>{{ payment['balance'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <form/>
+</body>
+</html>
